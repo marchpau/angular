@@ -1,0 +1,28 @@
+{
+  "productList": [
+    {
+      "productName": "Pau",
+      "species": "Dos",
+      "freshness": "Brand New",
+      "origin": "Valencia",
+      "id": 1
+    },
+    {
+      "productName": "Maria",
+      "species": "Dos",
+      "freshness": "Second Hand",
+      "origin": "Valencia",
+      "id": 2
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
