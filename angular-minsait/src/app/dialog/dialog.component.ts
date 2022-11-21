@@ -12,8 +12,8 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
 })
 export class DialogComponent implements OnInit {
 
-  freshnessList = ["Brand New", "Second Hand", "Refurbished"];
-  productForm !: FormGroup;
+  speciesList = ["Human", "Alien", "Cronenberg"];
+  characterForm !: FormGroup;
   actionBtn : string = "Save";
 
   constructor(private formBuilder : FormBuilder, 
@@ -22,46 +22,46 @@ export class DialogComponent implements OnInit {
     private dialogRef : MatDialogRef<DialogComponent>) { }
 
   ngOnInit(): void {
-    this.productForm = this.formBuilder.group({
-      productName : ['',Validators.required],
+    this.characterForm = this.formBuilder.group({
+      characterName : ['',Validators.required],
+      status : ['',Validators.required],
       species : ['',Validators.required],
-      freshness : ['',Validators.required],
       origin : ['',Validators.required],
 
     })
     if(this.editData){
       this.actionBtn = "Update";
-      this.productForm.controls['productName'].setValue(this.editData.productName)
-      this.productForm.controls['species'].setValue(this.editData.species)
-      this.productForm.controls['freshness'].setValue(this.editData.freshness)
-      this.productForm.controls['origin'].setValue(this.editData.origin)
+      this.characterForm.controls['characterName'].setValue(this.editData.characterName)
+      this.characterForm.controls['status'].setValue(this.editData.status)
+      this.characterForm.controls['species'].setValue(this.editData.species)
+      this.characterForm.controls['origin'].setValue(this.editData.origin)
     }
   }
-  addProduct(){
-    if(this.editData){
-      if(this.productForm.valid){
-        this.api.postProduct(this.productForm.value)
+  addCharacter(){
+    if(!this.editData){
+      if(this.characterForm.valid){
+        this.api.postCharacter(this.characterForm.value)
         .subscribe({
           next:(res)=>{
-            alert("Product added succesfully")
-            this.productForm.reset();
+            alert("Character added succesfully")
+            this.characterForm.reset();
             this.dialogRef.close('save');
           },
           error:()=>{
-            alert("Error while adding the product")
+            alert("Error while adding the character")
           }
         })
       }
     }else{
-      this.updateProduct()
+      this.updateCharacter()
   }
 }
-  updateProduct(){
-    this.api.putProduct(this.productForm.value,this.editData.id)
+  updateCharacter(){
+    this.api.putCharacter(this.characterForm.value,this.editData?.id)
     .subscribe({
       next:(res)=>{
-        alert("Product updated succesfully.")
-        this.productForm.reset();
+        alert("Character updated succesfully.")
+        this.characterForm.reset();
         this.dialogRef.close('update');
       },
       error:()=>{

@@ -8,16 +8,16 @@ export class ApiService {
 
   constructor(private http : HttpClient) { }
 
-  postProduct(data : any){
-    return this.http.post<any>("http://localhost:3000/productList/",data);
+  postCharacter(data : any){
+    return this.http.post<any>("http://localhost:3000/characterList/",data);
   }
-  getProduct(){
-    return this.http.get<any>("http://localhost:3000/productList/");
+  getCharacter(){
+    return this.http.get<any>("http://localhost:3000/characterList/");
   }
-  putProduct(data:any, id : number){
-    return this.http.put<any>("http://localhost:3000/productList/"+id ,data);
+  putCharacter(data:any, id : number){
+    return this.http.put<any>("http://localhost:3000/characterList/"+id ,data);
   }
-  deleteProduct(id:number){
-    return this.http.delete<any>("http://localhost:3000/productList/"+id);
+  deleteCharacter(id:number){
+    return this.http.delete<any>("http://localhost:3000/characterList/"+id);
   }
 }

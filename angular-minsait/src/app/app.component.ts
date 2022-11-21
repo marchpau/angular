@@ -17,7 +17,7 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class AppComponent implements OnInit{
   title = 'angular-minsait';
-  displayedColumns: string[] = ['productName', 'species', 'freshness', 'origin', 'action'];
+  displayedColumns: string[] = ['characterName', 'status', 'species', 'origin', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -27,19 +27,19 @@ export class AppComponent implements OnInit{
     
   }
   ngOnInit(): void {
-    this.getAllProducts();
+    this.getAllCharacters();
   }
   openDialog() {
     this.dialog.open(DialogComponent, {
       width: '30%'
     }).afterClosed().subscribe(val=>{
       if(val === 'save'){
-        this.getAllProducts()
+        this.getAllCharacters()
       }
     })
   }
-  getAllProducts(){
-    this.api.getProduct()
+  getAllCharacters(){
+    this.api.getCharacter()
     .subscribe({
       next:(res)=>{
         this.dataSource = new MatTableDataSource(res);
@@ -51,25 +51,25 @@ export class AppComponent implements OnInit{
       }
     })
   }
-  editProduct(row : any){
+  editCharacter(row : any){
     this.dialog.open(DialogComponent, {
       width: '30%',
       data:row
     }).afterClosed().subscribe(val=>{
       if(val === 'update'){
-        this.getAllProducts()
+        this.getAllCharacters()
       }
     })
   }
-  deleteProduct(id : number){
-    this.api.deleteProduct(id)
+  deleteCharacter(id : number){
+    this.api.deleteCharacter(id)
     .subscribe({
       next:(res)=>{
-        alert("Product Deleted Succesfully");
-        this.getAllProducts();
+        alert("Character Deleted Succesfully");
+        this.getAllCharacters();
       },
       error:(err)=>{
-        alert("Error while deleting the product.")
+        alert("Error while deleting the character.")
       }
     })
   }

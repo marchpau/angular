@@ -1,22 +1,22 @@
-<h1 mat-dialog-title>Dialog Title</h1>
-<form [formGroup]="productForm">
+<h1 mat-dialog-title>Characters</h1>
+<form [formGroup]="characterForm">
     <div mat-dialog-content>
         <mat-form-field appearance="outline">
             <mat-label>Character Name</mat-label>
-            <input formControlName="productName" matInput placeholder="Name">
+            <input formControlName="characterName" matInput placeholder="Name">
           </mat-form-field>
           <mat-form-field appearance="outline">
-            <mat-label>Character Species</mat-label>
-            <mat-select formControlName="species" placeholder="Species">
-                <mat-option value="Uno">Uno</mat-option>
-                <mat-option value="Dos">Dos</mat-option>
-                <mat-option value="Tres">Tres</mat-option>
+            <mat-label>Character status</mat-label>
+            <mat-select formControlName="status" placeholder="status">
+                <mat-option value="Uno">Alive</mat-option>
+                <mat-option value="Dos">Dead</mat-option>
+                <mat-option value="Tres">Unknown</mat-option>
             </mat-select>
           </mat-form-field>
-          <label for=""><h1>LaLista</h1></label>
-          <mat-radio-group formControlName="freshness" class="example-radio-group">
-            <mat-radio-button class="example-radio-button" *ngFor="let fresh of freshnessList" [value]="fresh">
-                {{fresh}}
+          <label for=""><h1>Species</h1></label>
+          <mat-radio-group formControlName="species" class="example-radio-group">
+            <mat-radio-button class="example-radio-button" *ngFor="let species of speciesList" [value]="species">
+                {{species}}
             </mat-radio-button>
         </mat-radio-group>
         <mat-form-field appearance="outline">
@@ -27,5 +27,5 @@
 </form>
 <div mat-dialog-action [align]="'end'">
     <button mat-raised-button color="warn" mat-dialog-close>Close</button>
-    <button class="button__save" mat-raised-button color="primary" (click)="addProduct()">{{actionBtn}}</button>
+    <button class="button__save" mat-raised-button color="primary" (click)="addCharacter()">{{actionBtn}}</button>
 </div>

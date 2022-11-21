@@ -1,25 +1,32 @@
 {
-  "productList": [
+  "characterList": [
     {
-      "productName": "Pau March",
-      "species": "Tres",
-      "freshness": "Brand New",
+      "characterName": "María",
+      "status": "Alive",
+      "species": "Human",
+      "origin": "Moncada",
+      "id": 1
+    },
+    {
+      "characterName": "Pau March",
+      "status": "Dos",
+      "species": "Alien",
+      "origin": "Moncada",
+      "id": 2
+    },
+    {
+      "characterName": "María",
+      "status": "Dos",
+      "species": "Alien",
       "origin": "Moncada",
       "id": 3
     },
     {
-      "productName": "Pau",
-      "species": "Dos",
-      "freshness": "Brand New",
+      "characterName": "Pau",
+      "status": "Dos",
+      "species": "Human",
       "origin": "Valencia",
       "id": 4
-    },
-    {
-      "productName": "Pau March",
-      "species": "Tres",
-      "freshness": "Brand New",
-      "origin": "Moncada",
-      "id": 5
     }
   ],
   "comments": [
