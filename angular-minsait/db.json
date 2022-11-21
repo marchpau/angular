@@ -1,18 +1,25 @@
 {
   "productList": [
     {
+      "productName": "Pau March",
+      "species": "Tres",
+      "freshness": "Brand New",
+      "origin": "Moncada",
+      "id": 3
+    },
+    {
       "productName": "Pau",
       "species": "Dos",
       "freshness": "Brand New",
       "origin": "Valencia",
-      "id": 1
+      "id": 4
     },
     {
-      "productName": "Maria",
-      "species": "Dos",
-      "freshness": "Second Hand",
-      "origin": "Valencia",
-      "id": 2
+      "productName": "Pau March",
+      "species": "Tres",
+      "freshness": "Brand New",
+      "origin": "Moncada",
+      "id": 5
     }
   ],
   "comments": [
