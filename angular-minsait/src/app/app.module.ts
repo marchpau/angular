@@ -22,8 +22,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { CrudComponentComponent } from './crud-component/crud-component.component';
-import { CharactersComponentComponent } from './characters-component/characters-component.component';
-import { DetailComponentComponent } from './detail-component/detail-component.component';
+import { CharactersModule } from './characters-component/characters.module';
+
+
 
 
 
@@ -32,8 +33,7 @@ import { DetailComponentComponent } from './detail-component/detail-component.co
     AppComponent,
     DialogComponent,
     CrudComponentComponent,
-    CharactersComponentComponent,
-    DetailComponentComponent
+
   ],
   imports: [
     BrowserModule,
@@ -53,6 +53,7 @@ import { DetailComponentComponent } from './detail-component/detail-component.co
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    CharactersModule
   ],
   providers: [],
   bootstrap: [AppComponent]

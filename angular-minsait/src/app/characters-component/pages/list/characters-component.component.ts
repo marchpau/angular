@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiServiceService } from './services/api-service.service';
+import { ApiServiceService } from '../../services/api-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-characters-component',
@@ -7,7 +8,10 @@ import { ApiServiceService } from './services/api-service.service';
   styleUrls: ['./characters-component.component.css'],
 })
 export class CharactersComponentComponent implements OnInit {
-  constructor(private apiService: ApiServiceService) {}
+  constructor(
+    private apiService: ApiServiceService,
+    private router: Router
+    ) {}
 
   info: string = '';
   characters!: any[];
@@ -22,4 +26,11 @@ export class CharactersComponentComponent implements OnInit {
       this.info = r.info;
     });
   }
+
+  goToDetails = (character: any) => {
+    console.log(character);
+    this.router.navigate(['character/', character.id])
+  } 
 }
+
+
