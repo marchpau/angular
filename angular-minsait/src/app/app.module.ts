@@ -21,16 +21,27 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { CrudComponentComponent } from './crud-component/crud-component.component';
+import { CharactersComponentComponent } from './characters-component/characters-component.component';
+import { DetailComponentComponent } from './detail-component/detail-component.component';
+import { RouterModule, Routes } from '@angular/router';
 
 
 
-
+const appRoutes:Routes=[
+  {path:'', component:CrudComponentComponent},
+  {path:'characters', component:CharactersComponentComponent},
+  {path:'detail', component:DetailComponentComponent},
+];
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogComponent
+    DialogComponent,
+    CrudComponentComponent,
+    CharactersComponentComponent,
+    DetailComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +60,8 @@ import {MatSortModule} from '@angular/material/sort';
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

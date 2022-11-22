@@ -27,6 +27,13 @@
       "species": "Human",
       "origin": "Valencia",
       "id": 4
+    },
+    {
+      "characterName": "Pau",
+      "status": "Alive",
+      "species": "Human",
+      "origin": "Valencia",
+      "id": 5
     }
   ],
   "comments": [
