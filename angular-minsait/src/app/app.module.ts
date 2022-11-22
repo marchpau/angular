@@ -24,15 +24,7 @@ import {MatSortModule} from '@angular/material/sort';
 import { CrudComponentComponent } from './crud-component/crud-component.component';
 import { CharactersComponentComponent } from './characters-component/characters-component.component';
 import { DetailComponentComponent } from './detail-component/detail-component.component';
-import { RouterModule, Routes } from '@angular/router';
 
-
-
-const appRoutes:Routes=[
-  {path:'', component:CrudComponentComponent},
-  {path:'characters', component:CharactersComponentComponent},
-  {path:'detail', component:DetailComponentComponent},
-];
 
 
 @NgModule({
@@ -61,7 +53,6 @@ const appRoutes:Routes=[
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]

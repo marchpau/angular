@@ -1,45 +1,82 @@
-import { Component, OnInit } from '@angular/core';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from '../app-routing.module';
-import { AppComponent } from '../app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDialogModule} from '@angular/material/dialog';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatRadioModule} from '@angular/material/radio';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from '../services/api.service';
 
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSortModule} from '@angular/material/sort';
-import { CharactersComponentComponent } from '../characters-component/characters-component.component';
-import { DetailComponentComponent } from '../detail-component/detail-component.component';
-import { RouterModule, Routes } from '@angular/router';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+
 
 @Component({
   selector: 'app-crud-component',
   templateUrl: './crud-component.component.html',
-  styleUrls: ['./crud-component.component.css'],
+  styleUrls: ['./crud-component.component.css']
 })
-
-
-
-
 export class CrudComponentComponent implements OnInit {
+  displayedColumns: string[] = ['characterName', 'status', 'species', 'origin', 'action'];
+  dataSource!: MatTableDataSource<any>;
 
-  constructor() { }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  ngOnInit(): void {
+  constructor(private dialog : MatDialog, private api : ApiService){
+    
   }
+  ngOnInit(): void {
+    this.getAllCharacters();
+  }
+  openDialog() {
+    this.dialog.open(DialogComponent, {
+      width: '30%'
+    }).afterClosed().subscribe(val=>{
+      if(val === 'save'){
+        this.getAllCharacters()
+      }
+    })
+  }
+  getAllCharacters(){
+    this.api.getCharacter()
+    .subscribe({
+      next:(res)=>{
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort; 
+      },
+      error:(err)=>{
+        alert("Error while fetching data")
+      }
+    })
+  }
+  editCharacter(row : any){
+    this.dialog.open(DialogComponent, {
+      width: '30%',
+      data:row
+    }).afterClosed().subscribe(val=>{
+      if(val === 'update'){
+        this.getAllCharacters()
+      }
+    })
+  }
+  deleteCharacter(id : number){
+    this.api.deleteCharacter(id)
+    .subscribe({
+      next:(res)=>{
+        alert("Character Deleted Succesfully");
+        this.getAllCharacters();
+      },
+      error:(err)=>{
+        alert("Error while deleting the character.")
+      }
+    })
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 }
